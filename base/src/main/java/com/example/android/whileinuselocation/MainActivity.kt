@@ -305,3 +305,15 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         }
     }
 }
+
+private val runningQOrLater =
+    android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q
+
+val backgroundPermissionApproved =
+    if (runningQOrLater) {
+        ActivityCompat.checkSelfPermission(
+            this, Manifest.permission.ACCESS_BACKGROUND_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    } else {
+        true
+    }
